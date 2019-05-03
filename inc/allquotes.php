@@ -3,8 +3,7 @@
 <?php
 $author_id = $_GET['allquotes'];
 
-$domain = get_option('rr_domain', null) . "/quotes";
-//    $domain = "http://www.famousquotes.dev/author/".$author_id;
+$domain = get_option('rr_domain', null) . "/authors/" . $author_id;
 $user = get_option('rr_user', null);
 $password = get_option('rr_pass', null);
 
@@ -18,14 +17,16 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $response = curl_exec($ch);
 curl_close($ch);
 
-$items = (json_decode($response, true));
-foreach ($items as $item) {
-    echo $item['quote'];
-    echo ' - ';
-    echo $item['author']['name'];
-    echo '<br>';
-}
+$author = (json_decode($response, true));
 ?>
+<h1>Quotes by <?php echo $author['name'] ?></h1>
+<div>
+<?php foreach ($author['quotes'] as $item) : ?>
+<p>
+    <?php echo $item['quote']; ?>
+</p>
+<?php endforeach; ?>
+</div>
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>
