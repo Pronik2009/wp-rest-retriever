@@ -5,3 +5,5 @@ Wordpress plugin use [API](https://github.com/zgoniaiko/famous-quotes) for CRUD 
 Plugin have admin part for CRUD quotes and shortcode for usage on frontend.
 
 Shortcode `[wp_rest_retriever]` will display random quote provided by API.
+
+CRUD created by another aouthor, github.com/zgoniaiko
